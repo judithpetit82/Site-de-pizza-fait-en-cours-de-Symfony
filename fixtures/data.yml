@@ -1,0 +1,61 @@
+App\Entity\Address:
+    address_admin:
+        city: <fr_FR:city()>
+        street: <fr_FR:streetAddress()>
+        zipCode: <fr_FR:postcode()>
+        user: "@user_admin"
+    address_user:
+        city: <fr_FR:city()>
+        street: <fr_FR:streetAddress()>
+        zipCode: <fr_FR:postcode()>
+        user: "@user_user"
+
+    address_{1..20}:
+        city: <fr_FR:city()>
+        street: <fr_FR:streetAddress()>
+        zipCode: <fr_FR:postcode()>
+
+App\Entity\User:
+    user_admin:
+        email: admin@mail.com
+        # password: admin
+        password: \$2y\$13\$8ATLuwmhkUOGsNv4gBiRTuyiV9UtPnHPzne/R5d87RkBsSKQL1Jqq
+        firstname: Admin
+        lastname: Admin
+        phone: 0606060606
+        roles: ["ROLE_ADMIN"]
+        address: "@address_admin"
+    user_user:
+        email: user@mail.com
+        # password: user
+        password: \$2y\$13\$PB/ooq5z1c0N6RZnqNL25OXH.xTaIdJnKztqZSzmUjh0cROgcbw8y
+        firstname: User
+        lastname: User
+        phone: 0606060606
+        address: "@address_user"
+    user_{1..5}:
+        email: <safeEmail()>
+        # password: password
+        password: \$2y\$13\$oYJu3M9uc6cCs7PAUZpf/uYme1lQn0rEUtoo.OHZdbHvB5vWpopoa
+        firstname: <fr_FR:firstName()>
+        lastname: <fr_FR:lastName()>
+        phone: 0606060606
+        address: "@address_*"
+
+App\Entity\Basket: 
+    basket_user: 
+        user: "@user_user"
+
+
+App\Entity\Pizza:
+    pizza_magarita: 
+        name: La margarita
+        description: <fr_FR:realText()>
+        price: 10.9
+        image_url: https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80
+    pizza_{1..15}:
+        name: <it_IT:realText(20)>
+        description: <fr_FR:realText()>
+        price: <randomFloat(2, 9, 19)>
+        image_url: https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80
+
